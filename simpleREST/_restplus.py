@@ -40,6 +40,7 @@ class Rate(Resource):
         return {'rate': rate }
     def post(self, rate_val ):
         rate = rate_val
+        return rate
         # parser = reqparse.RequestParser()
         # parser.add_argument('rate', type=int, help='Rate to charge for this resource')
         # args = parser.parse_args()
