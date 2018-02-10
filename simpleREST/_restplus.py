@@ -1,5 +1,5 @@
 from flask import Flask, request
-from flask_restplus import Api, Resource
+from flask_restplus import Api, Resource, reqparse
 
 app = Flask(__name__)
 
@@ -11,7 +11,10 @@ api = Api(app)
 # api.init_app(app)
 
 #minimal API
-@api.route('/hello')
+# api.add_resource(HelloWorld, '/hello', '/world')
+
+# @api.route('/hello')
+@api.route('/hello', '/world') # multiple routes 
 class HelloWorld(Resource):
     def get(self):
         return {'hello': 'world'}
@@ -19,6 +22,8 @@ class HelloWorld(Resource):
 # Basic CRUD resource: toDo
 todos = {}
 @api.route('/<string:todo_id>')
+# api.add_resource(Todo, '/todo/<int:todo_id>', endpoint='todo_ep')
+# @api.route('/todo/<int:todo_id>', endpoint='todo_ep')
 class TodoSimple(Resource):
     def get(self, todo_id):
         return {todo_id: todos[todo_id]}
@@ -26,6 +31,20 @@ class TodoSimple(Resource):
     def put(self, todo_id):
         todos[todo_id] = request.form['data']
         return {todo_id: todos[todo_id]}
+
+# validation 
+rate = 0 
+@api.route('/rate')
+class Rate(Resource):
+    def get(self):
+        return {'rate': rate }
+    def post(self, rate_val ):
+        rate = rate_val
+        # parser = reqparse.RequestParser()
+        # parser.add_argument('rate', type=int, help='Rate to charge for this resource')
+        # args = parser.parse_args()
+        # args = parser.parse_args(strict=True)
+
 
 
 if __name__ == '__main__':
@@ -35,4 +54,12 @@ if __name__ == '__main__':
 # curl http://127.0.0.1:5000/hello
 # Swagger UI - 
 
-# testing - HelloWorld: 
+# testing - toDo:
+# $ curl http://localhost:5000/todo1 -d "data=Remember the milk" -X PUT
+# $ curl http://localhost:5000/todo1
+# $ curl http://localhost:5000/todo2 -d "data=Change my brakepads" -X PUT
+# $ curl http://localhost:5000/todo2
+
+# testing - validation:
+# $ curl -d 'rate=foo' http://127.0.0.1:5000/todos -> {'status': 400, 'message': 'foo cannot be converted to int'}
+
