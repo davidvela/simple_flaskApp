@@ -32,5 +32,6 @@ def login():
             form.username.data, form.remember_me.data))
         # return redirect('/index2')
         return redirect(url_for('index'))
-
+    form.username.data = "user"
+    form.password.data = "pass"
     return render_template('login.html', title='Sign In', form=form)

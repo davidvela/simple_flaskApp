@@ -55,6 +55,7 @@ if __name__ == '__main__':
     app.run(debug=True) # Debug mode should never be used in a production environment!
 
 def test_curl():
+    pass
     # testing - HelloWorld: 
     # curl http://127.0.0.1:5000/hello
     # Swagger UI - 
@@ -67,4 +68,4 @@ def test_curl():
 
     # testing - validation:
     # $ curl -d 'rate=foo' http://127.0.0.1:5000/todos -> {'status': 400, 'message': 'foo cannot be converted to int'}
-
+    #hi
