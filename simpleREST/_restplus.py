@@ -14,10 +14,13 @@ api = Api(app)
 # api.add_resource(HelloWorld, '/hello', '/world')
 
 # @api.route('/hello')
-@api.route('/hello', '/world') # multiple routes 
+@api.route('/hello', '/world') # multiple routes / Endpoints 
 class HelloWorld(Resource):
     def get(self):
         return {'hello': 'world'}
+        # return {'task': 'Hello world'}       # default to 200 OK 
+        # return {'task': 'Hello world'}, 201  # Response code to 201
+        # return {'task': 'Hello world'}, 201, {'Etag': 'some-opaque-string'} # Response code to 201 + custom header
 
 # Basic CRUD resource: toDo
 todos = {}
@@ -51,16 +54,17 @@ class Rate(Resource):
 if __name__ == '__main__':
     app.run(debug=True) # Debug mode should never be used in a production environment!
 
-# testing - HelloWorld: 
-# curl http://127.0.0.1:5000/hello
-# Swagger UI - 
+def test_curl():
+    # testing - HelloWorld: 
+    # curl http://127.0.0.1:5000/hello
+    # Swagger UI - 
 
-# testing - toDo:
-# $ curl http://localhost:5000/todo1 -d "data=Remember the milk" -X PUT
-# $ curl http://localhost:5000/todo1
-# $ curl http://localhost:5000/todo2 -d "data=Change my brakepads" -X PUT
-# $ curl http://localhost:5000/todo2
+    # testing - toDo:
+    # $ curl http://localhost:5000/todo1 -d "data=Remember the milk" -X PUT
+    # $ curl http://localhost:5000/todo1
+    # $ curl http://localhost:5000/todo2 -d "data=Change my brakepads" -X PUT
+    # $ curl http://localhost:5000/todo2
 
-# testing - validation:
-# $ curl -d 'rate=foo' http://127.0.0.1:5000/todos -> {'status': 400, 'message': 'foo cannot be converted to int'}
+    # testing - validation:
+    # $ curl -d 'rate=foo' http://127.0.0.1:5000/todos -> {'status': 400, 'message': 'foo cannot be converted to int'}
 

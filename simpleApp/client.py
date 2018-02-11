@@ -8,7 +8,8 @@ app.config['SERVER_NAME'] = '127.0.0.1' + ':' + '5002'
 # flask_app.config['SWAGGER_UI_DOC_EXPANSION'] = settings.RESTPLUS_SWAGGER_UI_DOC_EXPANSION # 'list'
 # flask_app.config['RESTPLUS_VALIDATE'] = settings.RESTPLUS_VALIDATE # True
 # flask_app.config['RESTPLUS_MASK_SWAGGER'] = settings.RESTPLUS_MASK_SWAGGER # False
-# flask_app.config['ERROR_404_HELP'] = settings.RESTPLUS_ERROR_404_HELP # False
+# flask_app.config['ERROR_404_HELP'] = settings.RESTPLUS_ERROR_404_HELP # False 
+#                   - If a request does not match any of the application endpoints => return error 404 or not 
 
 
 @app.route('/')
