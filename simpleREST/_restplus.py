@@ -18,6 +18,7 @@ api = Api(app)
 class HelloWorld(Resource):
     def get(self):
         return {'hello': 'world'}
+        # return "hello"
         # return {'task': 'Hello world'}       # default to 200 OK 
         # return {'task': 'Hello world'}, 201  # Response code to 201
         # return {'task': 'Hello world'}, 201, {'Etag': 'some-opaque-string'} # Response code to 201 + custom header
