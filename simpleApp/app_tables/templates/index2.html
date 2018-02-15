@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+        <title>tables!</title>
+    </head>
+    <body>
+        <h1>Hello, {{ user.username }}!</h1>
+        {{table1|safe}}
+        <div class=page>
+            <h1>Surfer Groups</h1>
+            {% for table in tables %}
+            <h2>{{titles[ loop.index ]}}</h2>
+                {{table|safe}}
+            {% endfor %}
+        </div>
+    </body>
+</html>
