@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="stuff, to, help, search, engines, not" name="keywords">
+    <meta content="What this page is about." name="description">
+    <meta content="test REST WS" name="title">
+    <title>Test JS REST WS</title>
+    
+    <script src="./jquery.js">
+    </script>
+
+    <style></style>
+</head>
+  
+<body>
+   <button type="submit" onclick="UserAction2()">Search</button>   
+   <div id="container">ho
+        <!-- <video autoplay="true" id="videoElement">    </video> -->
+        <div id="text">hello</div>
+    </div>
+
+
+<!-- JAVASCRIPT -->
+<script>
+// <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+//  <script src="./jquery.js">
+
+$(document).ready(function() {
+        console.log(aData)
+        $('#text').text("hi from code") 
+    //     $('#text').text(function(i, oldText) {
+    //     return oldText === 'Profil' ? 'New word' : oldText;
+    // });
+});
+
+
+function UserAction() {
+    var aData = jQuery.ajax({
+					type: "GET",
+                    // contentType: "application/json; charset=utf-8",
+                    contentType: "text/plain",
+					//url: "https://us.wio.seeed.io/v1/node/GroveUltraRangerD0/",
+                    url: "http://127.0.0.1:5000/hello",
+                    // url: "http://10.10.180.168:5000/hello",
+                    // url: "http://localhost:5000/hello",
+                    // dataType: "jsonp",
+                    dataType: "json",
+                    // dataType: "xml",
+                    // dataType: "text",
+                    crossDomain: true,
+                    // headers: "Access-Control-Allow-Origin: *",
+                    headers: {'Authorization': 'Basic ' + btoa('username:password')},
+					async: false,
+					success: function(data, textStatus, jqXHR) {
+                        console.log("success")
+						//oModel.setData({modelData : data}); 
+						//alert("success to post");
+					}, 
+                    error: function(request,error) {
+                    alert('An error occurred attempting to get new e-number');
+                    // console.log(request, error);
+                    }
+                });
+
+        console.log(aData)
+		$('#text').text("hi from code1") 
+
+}
+function UserAction2() {
+    var xhttp = new XMLHttpRequest();
+    // xhttp.open("POST", "Your Rest URL Here", true);
+    xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			document.getElementById("container").innerHTML = this.responseText;
+		}
+	};
+    xhttp.open("GET",  "http://127.0.0.1:5000/hello" , true);
+	// xhttp.open("GET",  "http://10.10.180.168:5000/hello" , true);
+    //xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send();
+    //var response = JSON.parse(xhttp.responseText);
+    var response = xhttp.responseText;
+
+    console.log(response)
+	$('#text').text("hi from code2") 
+
+}
+
+function UserAction3() {
+
+    $.ajax({
+        url: "http://127.0.0.1:5000/hello"
+        // url: "http://10.10.180.168:5000/hello"
+    }).then(function(data) {
+       $('.greeting-id').append(data.id);
+       $('.greeting-content').append(data.content);
+    });
+}
+
+</script>
+</body>
+</html>
+
+<script>
+
+</script>
