@@ -6,8 +6,7 @@
     <meta content="What this page is about." name="description">
     <meta content="test REST WS" name="title">
     <title>Test JS REST WS</title>
-    
-    <script src="./jquery.js">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
     </script>
 
     <style></style>
@@ -27,7 +26,7 @@
 //  <script src="./jquery.js">
 
 $(document).ready(function() {
-        console.log(aData)
+        // console.log(aData)
         $('#text').text("hi from code") 
     //     $('#text').text(function(i, oldText) {
     //     return oldText === 'Profil' ? 'New word' : oldText;
@@ -72,8 +71,9 @@ function UserAction2() {
     // xhttp.open("POST", "Your Rest URL Here", true);
     xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-			document.getElementById("container").innerHTML = this.responseText;
-		}
+			// document.getElementById("container").innerHTML = this.responseText;
+            $('#text').text(this.responseText);
+        }
 	};
     xhttp.open("GET",  "http://127.0.0.1:5000/hello" , true);
 	// xhttp.open("GET",  "http://10.10.180.168:5000/hello" , true);
@@ -83,8 +83,8 @@ function UserAction2() {
     var response = xhttp.responseText;
 
     console.log(response)
-	$('#text').text("hi from code2") 
-
+	//$('#text').text("hi from code2") 
+    
 }
 
 function UserAction3() {
